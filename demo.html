@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>demo</title>
+    <style type="text/css" media="screen">
+      body {
+        font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+      }
+    </style>
+    <script src="mootools-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="neomoogal.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      window.addEvent('domready', function() {
+        gal = new NeoMooGal({
+          gal:$('neomoogal'),
+          source:$('source'),
+          dataPath:'data/',
+          resx:512, resy:384,
+          seconds:5,
+          cycle:true
+        })
+        gal.goTo()
+        gal.goPlay()
+      })
+    </script>
+  </head>
+  <body id="main">
+    <p>
+      Curabitur risus sem, feugiat vel, hendrerit non, fringilla in, ipsum. Sed tempor ligula sit
+      amet odio malesuada sollicitudin. Nullam aliquet, ante sit amet auctor vulputate, magna elit
+      scelerisque nunc, et convallis est nunc non ligula. Cras tellus nunc, luctus sit amet,
+      venenatis et, sodales vel, tortor. In hac habitasse platea dictumst. Curabitur massa velit,
+      ultricies ac, dignissim eget, mollis sed, urna. Quisque enim tellus, pellentesque ut,
+      tincidunt eu, porta sed, leo. In elementum dignissim erat. Sed eros diam, mattis eu, interdum
+      id, convallis ac, velit. Sed tellus elit, interdum id, posuere at, cursus in, enim. Vivamus
+      fermentum magna at urna vehicula congue. Vestibulum adipiscing, nibh at aliquam facilisis,
+      nibh orci sodales urna, sed tristique tortor ligula ut leo. Nullam a nibh. Nullam rhoncus
+      turpis quis magna. Etiam ipsum enim, tincidunt id, adipiscing a, malesuada at, felis. Donec
+      nunc diam, semper ut, feugiat ac, vehicula ut, felis.
+    </p>
+    <div id="neomoogal">
+    </div>
+    <ul id="source">
+      <li><a href="imgs/f1.png">Nullam a nibh</a></li>
+      <li><a href="imgs/f2.png">In hac habitasse platea dictumst</a></li>
+      <li><a href="imgs/f3.png">In elementum dignissim erat.</a></li>
+      <li><a href="imgs/f5.png">Feugiat vel, hendrerit non</a></li>
+      <li><a href="imgs/f7.png">Etiam ipsum enim</a></li>
+    </ul>
+    <p>
+      Curabitur risus sem, feugiat vel, hendrerit non, fringilla in, ipsum. Sed tempor ligula sit
+      amet odio malesuada sollicitudin. Nullam aliquet, ante sit amet auctor vulputate, magna elit
+      scelerisque nunc, et convallis est nunc non ligula. Cras tellus nunc, luctus sit amet,
+      venenatis et, sodales vel, tortor. In hac habitasse platea dictumst. Curabitur massa velit,
+      ultricies ac, dignissim eget, mollis sed, urna. Quisque enim tellus, pellentesque ut,
+      tincidunt eu, porta sed, leo. In elementum dignissim erat. Sed eros diam, mattis eu, interdum
+      id, convallis ac, velit. Sed tellus elit, interdum id, posuere at, cursus in, enim. Vivamus
+      fermentum magna at urna vehicula congue. Vestibulum adipiscing, nibh at aliquam facilisis,
+      nibh orci sodales urna, sed tristique tortor ligula ut leo. Nullam a nibh. Nullam rhoncus
+      turpis quis magna. Etiam ipsum enim, tincidunt id, adipiscing a, malesuada at, felis. Donec
+      nunc diam, semper ut, feugiat ac, vehicula ut, felis.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+Script: neomoogal.js
+	MooTools simple gallery
+
+License:
+	LGPL.
+
+Version:
+	0.1
+
+Copyright:
+	Copyright (c) 2009 [Carlos Bolaños](http://wocp.net).
+
+Dependencies:
+	- MooTools Core 1.2.3 (http://mootools.net)
+
+Todo:
+	- Add events (onFinish,onSlide,etc...)
+
+Inspiration:
+	- Multiple flash gals
+	- Default icons Tango iconset (http://tango.freedesktop.org/)
+
+Options:
+	- resx: (integer) Width of the view area
+	- resy: (integer) Height of the view area
+	- gal: ($() object) div to inject gallery
+	- source: ($() object) Source of a elements with info
+	- seconds: (integer) Seconds between slides
+	- cicle: (boolean) slideshow repeat?
+	- dataPath: (string) path to icons
+
+Events:
+	- TODO
+	
+Notes:
+  - Tested on ie6, ie7, ie8, ff3.5.1, safari4.0.2, o9.64
