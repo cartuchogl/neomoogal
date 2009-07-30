@@ -74,9 +74,9 @@ var NeoMooGal = new Class({
     },
     __f1:function() {
       if(this.playing) {
-        this.timerImg = this.options.div.clone()
+        this.timerImg = this.div.clone()
         this.timerImg.empty()
-        this.options.div.adopt(this.timerImg)
+        this.div.adopt(this.timerImg)
         this.timerImg.setStyle('background','url('+this.options.dataPath+'timer1.gif) right bottom no-repeat')
         this.timerImg.setStyle('position','absolute')
       }
@@ -138,13 +138,13 @@ var NeoMooGal = new Class({
       })
     },
     goToPage:function(index) {
-      this.options.div.empty()
+      this.div.empty()
       if(this.loading) {
         this.loading.dispose()
       } else {
-        this.loadingImg = this.options.div.clone()
+        this.loadingImg = this.div.clone()
         this.loadingImg.setStyle('backgroundColor','transparent')
-        this.options.div.adopt(this.loadingImg)
+        this.div.adopt(this.loadingImg)
         this.loadingImg.setStyle('backgroundImage','url('+this.options.dataPath+'loading.gif)')
       }
       this.loadingIndex = index
@@ -168,7 +168,7 @@ var NeoMooGal = new Class({
       })
       
       div.adopt(
-  			opts.legend = new Element('p', {
+  			this.legend = new Element('p', {
   			  text: 'loading',
   			  styles: {
   			    fontSize:'1.1em',
@@ -183,7 +183,7 @@ var NeoMooGal = new Class({
       )
       
       div.adopt(
-  			opts.div = new Element('div', {
+  			this.div = new Element('div', {
   			  styles: {
   			    width:opts.resx,
   			    height:opts.resy,
@@ -193,7 +193,7 @@ var NeoMooGal = new Class({
       )
       
       var _this = this
-      opts.aes = opts.process.map(function(el,i) {
+      this.aes = opts.process.map(function(el,i) {
         var str = (i+1)+''
         if(str.length<2)
           str = '0'+str
@@ -230,14 +230,14 @@ var NeoMooGal = new Class({
     			    click:this.onPrevious.bind(this)
     			  }
     			})),
-    			opts.pages = new Element('td', {
+    			this.pages = new Element('td', {
   		      href:'#',
     			  styles: {
     			    width:'100%',
     			    textAlign:'center',
     			    fontSize:'0.8em'
     			  }
-    			}).adopt(opts.aes.flatten()),
+    			}).adopt(this.aes.flatten()),
     			new Element('td').adopt( new Element('a', {
   		      href:'#',
     			  styles: {
@@ -290,7 +290,7 @@ var NeoMooGal = new Class({
     
     onPage: function(event) {
       event.stop()
-      var as = this.options.pages.getElements('a')
+      var as = this.pages.getElements('a')
       this.goToPage(as.indexOf(event.target))
     },
     onIni:function(event) {
@@ -325,13 +325,13 @@ var NeoMooGal = new Class({
       var index = this.loadingIndex
       var kk = this.options.process[index][0]
       if(opts.fade) {
-        this.loadingImg.setStyle('backgroundColor',opts.div.getStyle('backgroundColor'))
-        this.loadingImg.setStyle('backgroundImage',opts.div.getStyle('backgroundImage'))
+        this.loadingImg.setStyle('backgroundColor',this.div.getStyle('backgroundColor'))
+        this.loadingImg.setStyle('backgroundImage',this.div.getStyle('backgroundImage'))
       }
-      opts.div.setStyle('backgroundImage','url('+kk+')')
-      opts.legend.set('text',opts.process[index][1])
+      this.div.setStyle('backgroundImage','url('+kk+')')
+      this.legend.set('text',opts.process[index][1])
       if(opts.buttons) {
-        var as = this.options.pages.getElements('a')
+        var as = this.pages.getElements('a')
         as.each(function(el,i) {
           if(i==index)
             el.setStyle('textDecoration','none')
