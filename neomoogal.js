@@ -53,8 +53,8 @@ var NeoMooGal = new Class({
         fade:     true,
         buttons:  true,
         theme: {
-          lengend:'white',
-          lengendBackground:'#7a8a85',
+          legend:'white',
+          legendBackground:'#7a8a85',
           imgBackground:'#222',
           buttons:'white',
           buttonsBackground:'black'
@@ -176,8 +176,8 @@ var NeoMooGal = new Class({
   			    padding:'0.3em 0.3em 0.1em 0.3em',
   			    overflow:'hidden',
   			    height:'1.2em',
-  			    backgroundColor:opts.theme.lengendBackground,
-  			    color:opts.theme.lengend
+  			    backgroundColor:opts.theme.legendBackground,
+  			    color:opts.theme.legend
   			  }
   			})
       )
