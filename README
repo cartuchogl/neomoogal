@@ -28,6 +28,8 @@ Options:
 	- seconds: (integer) Seconds between slides
 	- cicle: (boolean) slideshow repeat?
 	- dataPath: (string) path to icons
+	- fade: (boolean) enable fading between images
+	- buttons: (boolean) enable bottom toolbar
 
 Events:
 	- TODO

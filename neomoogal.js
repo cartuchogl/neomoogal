@@ -29,6 +29,8 @@ Options:
 	- seconds: (integer) Seconds between slides
 	- cicle: (boolean) slideshow repeat?
 	- dataPath: (string) path to icons
+	- fade: (boolean) enable fading between images
+	- buttons: (boolean) enable bottom toolbar
 
 Events:
 	- TODO
@@ -48,7 +50,8 @@ var NeoMooGal = new Class({
         dataPath: '',
         seconds:  10,
         cycle:    false,
-        fade:     true
+        fade:     true,
+        buttons:  true,
     },
     loading: null,
     loadingIndex:-1,
@@ -98,7 +101,8 @@ var NeoMooGal = new Class({
         this.goPlay.bind(this).delay(500)
       else
       if(this.options.current<this.options.process.length-1) {
-        this.playPauseButton.setStyle('backgroundImage','url('+this.options.dataPath+'playback-pause.png)')
+        if(this.playPauseButton)
+          this.playPauseButton.setStyle('backgroundImage','url('+this.options.dataPath+'playback-pause.png)')
         this.playing = true;
         var quatter = this.options.seconds*1000/4
         this.__f1.bind(this).delay(quatter)
@@ -106,7 +110,8 @@ var NeoMooGal = new Class({
         this.__f3.bind(this).delay(quatter*3)
         this.__f4.bind(this).delay(quatter*4)
       } else if(this.options.cycle||force) {
-        this.playPauseButton.setStyle('backgroundImage','url('+this.options.dataPath+'playback-pause.png)')
+        if(this.playPauseButton)
+          this.playPauseButton.setStyle('backgroundImage','url('+this.options.dataPath+'playback-pause.png)')
         this.playing = true;
         var quatter = this.options.seconds*1000/4
         this.__f1.bind(this).delay(quatter)
@@ -115,7 +120,8 @@ var NeoMooGal = new Class({
         this.__f5.bind(this).delay(quatter*4)
       } else {
         this.playing = false
-        this.playPauseButton.setStyle('backgroundImage','url('+this.options.dataPath+'playback-start.png)')
+        if(this.playPauseButton)
+          this.playPauseButton.setStyle('backgroundImage','url('+this.options.dataPath+'playback-start.png)')
       }
     },
     scan:function() {
@@ -195,82 +201,84 @@ var NeoMooGal = new Class({
   			  }
         }),new Element('text',{text:' '})]
       })
-      var tds = [
-			  new Element('td').adopt( new Element('a', {
-		      href:'#',
-  			  styles: {
-  			    display:'block', width:16, height:16,
-  			    background:'url('+this.options.dataPath+'skip-backward.png) center'
-  			  },
-  			  events: {
-  			    click:this.onIni.bind(this)
-  			  }
-  			})),
-        new Element('td').adopt( new Element('a', {
-		      href:'#',
-  			  styles: {
-  			    display:'block', width:16, height:16,
-  			    background:'url('+this.options.dataPath+'seek-backward.png) center'
-  			  },
-  			  events: {
-  			    click:this.onPrevious.bind(this)
-  			  }
-  			})),
-  			opts.pages = new Element('td', {
-		      href:'#',
-  			  styles: {
-  			    width:'100%',
-  			    textAlign:'center',
-  			    fontSize:'0.8em'
-  			  }
-  			}).adopt(opts.aes.flatten()),
-  			new Element('td').adopt( new Element('a', {
-		      href:'#',
-  			  styles: {
-  			    display:'block', width:16, height:16,
-  			    background:'url('+this.options.dataPath+'seek-forward.png) center'
-  			  },
-  			  events: {
-  			    click:this.onNext.bind(this)
-  			  }
-  			})),
-        new Element('td').adopt( new Element('a', {
-		      href:'#',
-  			  styles: {
-  			    display:'block', width:16, height:16,
-  			    background:'url('+this.options.dataPath+'skip-forward.png) center'
-  			  },
-  			  events: {
-  			    click:this.onEnd.bind(this)
-  			  }
-  			})),
-  			new Element('td').adopt( this.playPauseButton = new Element('a', {
-		      href:'#',
-  			  styles: {
-  			    display:'block', width:16, height:16,
-  			    background:'url('+this.options.dataPath+'playback-start.png) center'
-  			  },
-  			  events: {
-  			    click:this.onPlayPause.bind(this)
-  			  }
-  			}))
-			]
-      var todo = 
-			  new Element('tr', {
-			    // fuck IE ;)
-          // styles: { verticalAlign: 'center' }
-  			}).adopt(tds)
-      div.adopt(
-  			new Element('table', {
-  			  styles: {
-  			    backgroundColor:'black',
-  			    color:'white',
-  			    width:'100%'
-  			  }
-  			}).adopt(
-  			  new Element('tbody').adopt(todo)
-  			)
-      )
+      if(opts.buttons) {
+        var tds = [
+  			  new Element('td').adopt( new Element('a', {
+  		      href:'#',
+    			  styles: {
+    			    display:'block', width:16, height:16,
+    			    background:'url('+this.options.dataPath+'skip-backward.png) center'
+    			  },
+    			  events: {
+    			    click:this.onIni.bind(this)
+    			  }
+    			})),
+          new Element('td').adopt( new Element('a', {
+  		      href:'#',
+    			  styles: {
+    			    display:'block', width:16, height:16,
+    			    background:'url('+this.options.dataPath+'seek-backward.png) center'
+    			  },
+    			  events: {
+    			    click:this.onPrevious.bind(this)
+    			  }
+    			})),
+    			opts.pages = new Element('td', {
+  		      href:'#',
+    			  styles: {
+    			    width:'100%',
+    			    textAlign:'center',
+    			    fontSize:'0.8em'
+    			  }
+    			}).adopt(opts.aes.flatten()),
+    			new Element('td').adopt( new Element('a', {
+  		      href:'#',
+    			  styles: {
+    			    display:'block', width:16, height:16,
+    			    background:'url('+this.options.dataPath+'seek-forward.png) center'
+    			  },
+    			  events: {
+    			    click:this.onNext.bind(this)
+    			  }
+    			})),
+          new Element('td').adopt( new Element('a', {
+  		      href:'#',
+    			  styles: {
+    			    display:'block', width:16, height:16,
+    			    background:'url('+this.options.dataPath+'skip-forward.png) center'
+    			  },
+    			  events: {
+    			    click:this.onEnd.bind(this)
+    			  }
+    			})),
+    			new Element('td').adopt( this.playPauseButton = new Element('a', {
+  		      href:'#',
+    			  styles: {
+    			    display:'block', width:16, height:16,
+    			    background:'url('+this.options.dataPath+'playback-start.png) center'
+    			  },
+    			  events: {
+    			    click:this.onPlayPause.bind(this)
+    			  }
+    			}))
+  			]
+        var todo = 
+  			  new Element('tr', {
+  			    // fuck IE ;)
+            // styles: { verticalAlign: 'center' }
+    			}).adopt(tds)
+        div.adopt(
+    			new Element('table', {
+    			  styles: {
+    			    backgroundColor:'black',
+    			    color:'white',
+    			    width:'100%'
+    			  }
+    			}).adopt(
+    			  new Element('tbody').adopt(todo)
+    			)
+        )
+      }
     },
     
     onPage: function(event) {
@@ -315,13 +323,15 @@ var NeoMooGal = new Class({
       }
       opts.div.setStyle('backgroundImage','url('+kk+')')
       opts.legend.set('text',opts.process[index][1])
-      var as = this.options.pages.getElements('a')
-      as.each(function(el,i) {
-        if(i==index)
-          el.setStyle('textDecoration','none')
-        else
-          el.setStyle('textDecoration','underline')
-      })
+      if(opts.buttons) {
+        var as = this.options.pages.getElements('a')
+        as.each(function(el,i) {
+          if(i==index)
+            el.setStyle('textDecoration','none')
+          else
+            el.setStyle('textDecoration','underline')
+        })
+      }
       opts.current = index
       if(opts.fade) {
         this.loadingImg.fade(0).get('tween').chain(this.onEndFade.bind(this))
