@@ -52,6 +52,13 @@ var NeoMooGal = new Class({
         cycle:    false,
         fade:     true,
         buttons:  true,
+        theme: {
+          lengend:'white',
+          lengendBackground:'#7a8a85',
+          imgBackground:'#222',
+          buttons:'white',
+          buttonsBackground:'black'
+        }
     },
     loading: null,
     loadingIndex:-1,
@@ -169,8 +176,8 @@ var NeoMooGal = new Class({
   			    padding:'0.3em 0.3em 0.1em 0.3em',
   			    overflow:'hidden',
   			    height:'1.2em',
-  			    backgroundColor:'#7a8a85',
-  			    color:'white'
+  			    backgroundColor:opts.theme.lengendBackground,
+  			    color:opts.theme.lengend
   			  }
   			})
       )
@@ -180,7 +187,7 @@ var NeoMooGal = new Class({
   			  styles: {
   			    width:opts.resx,
   			    height:opts.resy,
-  			    background:'#222 url('+this.options.dataPath+'loading.gif) center no-repeat'
+  			    background:opts.theme.imgBackground+' url('+opts.dataPath+'loading.gif) center no-repeat'
   			  }
   			})
       )
@@ -194,7 +201,7 @@ var NeoMooGal = new Class({
           href:'#',
           text:str,
           styles:{
-            color:'#ddd'
+            color:opts.theme.buttons
           },
           events: {
   			    click:_this.onPage.bind(_this)
@@ -270,8 +277,8 @@ var NeoMooGal = new Class({
         div.adopt(
     			new Element('table', {
     			  styles: {
-    			    backgroundColor:'black',
-    			    color:'white',
+    			    backgroundColor:opts.theme.buttonsBackground,
+    			    color:opts.theme.buttons,
     			    width:'100%'
     			  }
     			}).adopt(
