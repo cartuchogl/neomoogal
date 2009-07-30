@@ -136,6 +136,7 @@ var NeoMooGal = new Class({
         this.loading.dispose()
       } else {
         this.loadingImg = this.options.div.clone()
+        this.loadingImg.setStyle('backgroundColor','transparent')
         this.options.div.adopt(this.loadingImg)
         this.loadingImg.setStyle('backgroundImage','url('+this.options.dataPath+'loading.gif)')
       }
@@ -156,7 +157,6 @@ var NeoMooGal = new Class({
       var div = opts.gal
       div.empty()
       div.setStyles({
-          backgroundColor:'#222',
           width:opts.resx
       })
       
@@ -180,7 +180,7 @@ var NeoMooGal = new Class({
   			  styles: {
   			    width:opts.resx,
   			    height:opts.resy,
-  			    background:'url('+this.options.dataPath+'loading.gif) center no-repeat'
+  			    background:'#222 url('+this.options.dataPath+'loading.gif) center no-repeat'
   			  }
   			})
       )
@@ -318,7 +318,7 @@ var NeoMooGal = new Class({
       var index = this.loadingIndex
       var kk = this.options.process[index][0]
       if(opts.fade) {
-        this.loadingImg.setStyle('backgroundColor',opts.gal.getStyle('backgroundColor'))
+        this.loadingImg.setStyle('backgroundColor',opts.div.getStyle('backgroundColor'))
         this.loadingImg.setStyle('backgroundImage',opts.div.getStyle('backgroundImage'))
       }
       opts.div.setStyle('backgroundImage','url('+kk+')')
