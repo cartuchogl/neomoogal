@@ -52,6 +52,7 @@ var NeoMooGal = new Class({
         cycle:    false,
         fade:     true,
         buttons:  true,
+        legend:   true,
         theme: {
           legend:'white',
           legendBackground:'#7a8a85',
@@ -167,20 +168,21 @@ var NeoMooGal = new Class({
           width:opts.resx
       })
       
-      div.adopt(
-  			this.legend = new Element('p', {
-  			  text: 'loading',
-  			  styles: {
-  			    fontSize:'1.1em',
-  			    margin:0,
-  			    padding:'0.3em 0.3em 0.1em 0.3em',
-  			    overflow:'hidden',
-  			    height:'1.2em',
-  			    backgroundColor:opts.theme.legendBackground,
-  			    color:opts.theme.legend
-  			  }
-  			})
-      )
+      if(opts.legend)
+        div.adopt(
+    			this.legend = new Element('p', {
+    			  text: 'loading',
+    			  styles: {
+    			    fontSize:'1.1em',
+    			    margin:0,
+    			    padding:'0.3em 0.3em 0.1em 0.3em',
+    			    overflow:'hidden',
+    			    height:'1.2em',
+    			    backgroundColor:opts.theme.legendBackground,
+    			    color:opts.theme.legend
+    			  }
+    			})
+        )
       
       div.adopt(
   			this.div = new Element('div', {
@@ -329,7 +331,8 @@ var NeoMooGal = new Class({
         this.loadingImg.setStyle('backgroundImage',this.div.getStyle('backgroundImage'))
       }
       this.div.setStyle('backgroundImage','url('+kk+')')
-      this.legend.set('text',opts.process[index][1])
+      if(this.legend)
+        this.legend.set('text',opts.process[index][1])
       if(opts.buttons) {
         var as = this.pages.getElements('a')
         as.each(function(el,i) {
