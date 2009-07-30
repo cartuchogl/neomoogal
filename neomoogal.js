@@ -47,7 +47,8 @@ var NeoMooGal = new Class({
         current:  0,
         dataPath: '',
         seconds:  10,
-        cycle:    false
+        cycle:    false,
+        fade:     true
     },
     loading: null,
     loadingIndex:-1,
@@ -308,6 +309,10 @@ var NeoMooGal = new Class({
       var opts = this.options
       var index = this.loadingIndex
       var kk = this.options.process[index][0]
+      if(opts.fade) {
+        this.loadingImg.setStyle('backgroundColor',opts.gal.getStyle('backgroundColor'))
+        this.loadingImg.setStyle('backgroundImage',opts.div.getStyle('backgroundImage'))
+      }
       opts.div.setStyle('backgroundImage','url('+kk+')')
       opts.legend.set('text',opts.process[index][1])
       var as = this.options.pages.getElements('a')
@@ -318,6 +323,13 @@ var NeoMooGal = new Class({
           el.setStyle('textDecoration','underline')
       })
       opts.current = index
+      if(opts.fade) {
+        this.loadingImg.fade(0).get('tween').chain(this.onEndFade.bind(this))
+      } else {
+        this.onEndFade()
+      }
+    },
+    onEndFade:function() {
       this.loadingImg.dispose()
       this.loading = null
     }
